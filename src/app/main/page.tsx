@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect } from "react";
 import Aside from "../_components/common/Aside";
 import Header from "../_components/common/Header";
@@ -9,6 +8,8 @@ import {Session} from "@auth/core/types";
 import Posts from "../_components/form/Posts";
 import SearchResultPosts from "../_components/form/SearchResultPosts";
 
+export const runtime = 'edge';
+
 type UserProps = {
   session?: Session | null
   searchParams?: { q: string, f?: string, pf?: string };
@@ -17,6 +18,7 @@ type UserProps = {
 export default function Main ({ session, searchParams } : UserProps){
 
   const app = useApp()
+
 
   useEffect(() => {
     if (session) app.setSession?.(session)
