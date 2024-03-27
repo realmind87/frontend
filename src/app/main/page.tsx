@@ -10,7 +10,7 @@ import Posts from "../_components/form/Posts";
 import SearchResultPosts from "../_components/form/SearchResultPosts";
 
 type UserProps = {
-  session: Session | null
+  session?: Session | null
   searchParams?: { q: string, f?: string, pf?: string };
 }
 
@@ -19,10 +19,8 @@ export default function Main ({ session, searchParams } : UserProps){
   const app = useApp()
 
   useEffect(() => {
-    app.setSession?.(session)
+    if (session) app.setSession?.(session)
   }, [session])
-
-  console.log(searchParams)
 
   return (
     <div id="wrap">

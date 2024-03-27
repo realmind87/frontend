@@ -2,6 +2,7 @@ import {QueryFunction} from "@tanstack/query-core";
 import {PostProps} from '@/app/models/post';
 import axios from "axios";
 import backUrl from '@/config'
+import config from "@/config";
 
 type AddPost = {
     user: any;
@@ -58,7 +59,7 @@ export const getSearchPosts: QueryFunction<PostProps[], [_1: string, searchParam
     
     try {
         console.log(urlSearchParams.toString())
-        const res = await fetch(`${backUrl}/posts/search/result?${urlSearchParams.toString()}`, {
+        const res = await fetch(`${config}/search/result?${urlSearchParams.toString()}`, {
             next: {
                 tags: ['posts', searchParams.q],
             },
