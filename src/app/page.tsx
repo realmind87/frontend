@@ -1,4 +1,4 @@
-import Main from '@/app/main'
+import Main from '@/app/main/page'
 import { auth } from '@/auth'
 
 export default async function Home() {
