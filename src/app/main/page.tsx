@@ -8,7 +8,7 @@ import {Session} from "@auth/core/types";
 import Posts from "../_components/form/Posts";
 import SearchResultPosts from "../_components/form/SearchResultPosts";
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 type UserProps = {
   session?: Session | null
