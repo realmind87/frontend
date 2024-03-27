@@ -11,7 +11,7 @@ type UserProps = {
   session: Session | null
 }
 
-export const runtime = 'edge';
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 
 export default function Main ({ session } : UserProps){
 
