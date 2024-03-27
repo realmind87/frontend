@@ -1,7 +1,5 @@
 "use client"
 
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
-
 import { useEffect } from "react";
 import Aside from "../_components/common/Aside";
 import Header from "../_components/common/Header";

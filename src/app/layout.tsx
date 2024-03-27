@@ -4,6 +4,7 @@ import "./styles/main.scss";
 
 import AuthProvider from "./_components/providers/AuthProvider";
 import { AppProvider } from "./_components/providers/AppProvider";
+import RQproviders from "./_components/providers/RQproviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-            <AppProvider>{children}</AppProvider>
+          <AppProvider>
+            <RQproviders>
+              {children}
+            </RQproviders>
+         </AppProvider>
         </AuthProvider>
       </body>
     </html>
