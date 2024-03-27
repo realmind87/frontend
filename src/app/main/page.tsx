@@ -7,12 +7,14 @@ import Search from "../_components/form/Search";
 import {useApp} from "@/app/hooks/useApp"
 import {Session} from "@auth/core/types";
 import Posts from "../_components/form/Posts";
+import SearchResultPosts from "../_components/form/SearchResultPosts";
 
 type UserProps = {
   session: Session | null
+  searchParams?: { q: string, f?: string, pf?: string };
 }
 
-export default function Main ({ session } : UserProps){
+export default function Main ({ session, searchParams } : UserProps){
 
   const app = useApp()
 
@@ -30,7 +32,7 @@ export default function Main ({ session } : UserProps){
               <h2 className="tit">최근 게시글</h2>
               <Search />
             </div>
-            <Posts />
+            {searchParams ? <SearchResultPosts searchParams={searchParams}/> :  <Posts />}
           </div>
         </section>
         <Aside />
