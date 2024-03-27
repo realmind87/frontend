@@ -21,7 +21,9 @@ export default function Main ({ session, searchParams } : UserProps){
   useEffect(() => {
     app.setSession?.(session)
   }, [session])
-  
+
+  console.log(searchParams)
+
   return (
     <div id="wrap">
       <Header />
@@ -32,7 +34,7 @@ export default function Main ({ session, searchParams } : UserProps){
               <h2 className="tit">최근 게시글</h2>
               <Search />
             </div>
-            {searchParams ? <SearchResultPosts searchParams={searchParams}/> :  <Posts />}
+            {searchParams?.q ? <SearchResultPosts searchParams={searchParams}/> :  <Posts />}
           </div>
         </section>
         <Aside />
