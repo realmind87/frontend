@@ -1,8 +1,23 @@
+"use client"
+
+import { useEffect } from "react";
 import Aside from "../_components/common/Aside";
 import Header from "../_components/common/Header";
 import Search from "../_components/form/Search";
+import {useApp} from "@/app/hooks/useApp"
+import {Session} from "@auth/core/types";
 
-export default async function Main (){
+type UserProps = {
+  session: Session | null
+}
+
+export default function Main ({ session } : UserProps){
+
+  const app = useApp()
+
+  useEffect(() => {
+    app.setSession?.(session)
+  }, [session])
   
   return (
     <div id="wrap">

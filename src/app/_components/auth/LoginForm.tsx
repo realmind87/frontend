@@ -1,7 +1,6 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-
 
 interface FormProps {
     setOpen?:  React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,6 +42,10 @@ const Form: React.FC<FormProps> = ({setOpen}) => {
             setResData({code: 4002, message: '비밀번호를 입력해 주세요'})
             return 
         }
+
+        console.log(userID)
+        console.log(password)
+
         
         signIn("credentials", {
             username: userID,

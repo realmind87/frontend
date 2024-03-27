@@ -5,6 +5,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import LoginForm from "../_components/auth/LoginForm";
 
 const Login = () => {
+    
     return (
         <div id="wrap" className="signup">
             <Link href="/" className='btn-back'>

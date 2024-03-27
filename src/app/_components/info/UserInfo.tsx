@@ -1,18 +1,19 @@
 "use client"
 
 import Image from 'next/image';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { useState, useRef, useEffect } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
-import {Session} from "@auth/core/types";
+import { useApp } from '@/app/hooks/useApp'
+import config from '@/config';
 
-type UserProps = {
-    user: Session | null
-}
+const UserInfo = () => {
+    const app = useApp();
 
-const UserInfo = ({ user } : UserProps) => {
+    console.log(app)
 
-    const session = user
+    console.log(app.session)
+    
 
     const [isVisible, setIsVisible] = useState(false);
     const tooltipRef = useRef<HTMLDivElement>(null);
@@ -35,24 +36,34 @@ const UserInfo = ({ user } : UserProps) => {
           document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+
+    if (!app.session) {
+        return null
+    }
+
     return (
         <div className='user-area' ref={tooltipRef}>
             <button type="button" className='btn-user' onClick={() => setIsVisible(!isVisible)}>
-                {/* {session?.user?.image?.length !== 0 
-                    ? <Image 
-                        src={`${backUrl}/${session?.user?.image}`} 
-                        width={32} 
-                        height={32} 
-                        alt="프로필 이미지" 
-                    /> 
-                    : <BsPersonCircle size={32} color="#dfdfdf" />
-                } */}
+                {
+                    app.session && 
+                        app.session?.user?.image?.length !== 0 ? (
+                            <Image 
+                                src={`${app.session?.user?.image}`} 
+                                width={32} 
+                                height={32} 
+                                alt="프로필 이미지" 
+                            /> 
+                        ) : (
+                            <BsPersonCircle size={32} color="#dfdfdf" />
+                        )
+                }
             </button>
             {isVisible && (
                 <div className='user-info'>
                     <ul>
                         <li>
-                            <strong className='user-name'>{session?.user?.name}</strong>
+                            <strong className='user-name'>{app.session?.user?.name}</strong>
                         </li>
                         <li></li>
                         <li>

@@ -1,5 +1,9 @@
-import Main from '@/app/main/page'
+import Main from '@/app/main'
+import { auth } from '@/auth'
 
-export default function Home() {
-  return <Main />
+export default async function Home() {
+
+  const session = await auth();
+  
+  return <Main session={session} />
 }

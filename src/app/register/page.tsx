@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
 import Image from 'next/image';
 import Link from 'next/link';
-// import onSubmit from '../_lib/signup'
+import onSubmit from '../_lib/signup'
 import { useFormState } from 'react-dom'
 
 export default function SignUp() {
@@ -13,26 +13,26 @@ export default function SignUp() {
     const passwordRef = useRef<HTMLInputElement>(null);
     const passwordCheckRef = useRef<HTMLInputElement>(null);
 
-    //const [state, formAction] = useFormState(onSubmit, { message: null });
-    //const {code, message} = state;
+    const [state, formAction] = useFormState(onSubmit, { message: null });
+    const {code, message} = state;
 
     const [preview, setPreview] = useState<string | null>('');
 
-    // const onValidation = useCallback((state: any) => {
-    //     const { code } = state        
-    //     if (code === 4001 || code === 4002 || code === 4007) {
-    //         userRef.current?.focus();
-    //     }
+    const onValidation = useCallback((state: any) => {
+        const { code } = state        
+        if (code === 4001 || code === 4002 || code === 4007) {
+            userRef.current?.focus();
+        }
 
-    //     if (code === 4003 || code === 4004) {
-    //         passwordRef.current?.focus();
-    //     }
+        if (code === 4003 || code === 4004) {
+            passwordRef.current?.focus();
+        }
 
-    //     if (code === 4005|| code === 4006) {
-    //         passwordCheckRef.current?.focus();
-    //     }
+        if (code === 4005|| code === 4006) {
+            passwordCheckRef.current?.focus();
+        }
 
-    // }, [state])
+    }, [state])
     
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -44,15 +44,15 @@ export default function SignUp() {
         }
     };
 
-    // const onSubmitHandler = (e: FormData, isImg : string | null) => {
-    //     const _formData = e;
-    //     if (!isImg) _formData.set('avatar', "");
-    //     formAction(_formData);
-    // }
+    const onSubmitHandler = (e: FormData, isImg : string | null) => {
+        const _formData = e;
+        if (!isImg) _formData.set('avatar', "");
+        formAction(_formData);
+    }
     
-    // useEffect(() => {
-    //     onValidation(state)
-    // }, [state])
+    useEffect(() => {
+        onValidation(state)
+    }, [state])
 
     return (
         <div id="wrap" className="signup">
@@ -61,8 +61,7 @@ export default function SignUp() {
             </Link>
             <div className="signup-warp">
                 <h1>회원가입</h1>
-                <form>
-                {/* <form action={(e) => onSubmitHandler(e, preview)}> */}
+                <form action={(e) => onSubmitHandler(e, preview)}>
                     <div className="signup-content">
                         <ul>
                             <li>
@@ -82,10 +81,10 @@ export default function SignUp() {
                                     ref={userRef}
                                     type="text"
                                     name='userID'
-                                    // className={`${code === 4001 || code === 4002 || code === 4007 ? "wran" : ""}`}
+                                    className={`${code === 4001 || code === 4002 || code === 4007 ? "wran" : ""}`}
                                     placeholder="영문, 숫자 포함 8자 이상 입력해주세요"
                                 />
-                                {/* {(code === 4001 || code === 4002 || code === 4007 ) && <p className="txt-helper wran">{message}</p>} */}
+                                {(code === 4001 || code === 4002 || code === 4007 ) && <p className="txt-helper wran">{message}</p>}
                                 
                             </li>
                             <li>
@@ -93,20 +92,20 @@ export default function SignUp() {
                                     ref={passwordRef}
                                     type="password"
                                     name="password"
-                                    // className={`${code === 4003 || code === 4004 ? "wran" : ""}`}
+                                    className={`${code === 4003 || code === 4004 ? "wran" : ""}`}
                                     placeholder="영문 대문자, 숫자, 특수문자 포함 8자 이상 입력해주세요"
                                 />
-                                {/* {(code === 4003 || code === 4004) && <p className="txt-helper wran">{message}</p>} */}
+                                {(code === 4003 || code === 4004) && <p className="txt-helper wran">{message}</p>}
                             </li>
                             <li>
                                 <input
                                     ref={passwordCheckRef}
                                     type="password"
                                     name="passwordCheck"
-                                    //className={`${code === 4005 || code === 4006 ? "wran" : ""}`}
+                                    className={`${code === 4005 || code === 4006 ? "wran" : ""}`}
                                     placeholder="비밀번호 다시 입력해주세요" 
                                 />
-                                {/* {(code === 4005 || code === 4006) && <p className="txt-helper wran">{message}</p>} */}
+                                {(code === 4005 || code === 4006) && <p className="txt-helper wran">{message}</p>}
                             </li>
                         </ul>
                     </div>

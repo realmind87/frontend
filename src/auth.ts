@@ -10,6 +10,7 @@ export const { handlers: { GET, POST }, signIn, signOut, auth } = NextAuth({
     providers: [
         Credentials({
             async authorize(credentials) {
+                
                 try {
                     const authResponse = await fetch(`${config}/login`, {
                         method: "POST",
@@ -23,21 +24,21 @@ export const { handlers: { GET, POST }, signIn, signOut, auth } = NextAuth({
                     })
 
                     if (!authResponse.ok) {
-                        console.log(authResponse)
                         return null
                     }
 
                     const response = await authResponse.json()
                     const user = response.user;
-
+                    console.log('성공', user)
+                    
                     return {
                         id: user.userID,
                         name: user.userID,
-                        image: user.avatar,
+                        image: user.image,
                         ...response
                     }
                 } catch (e) {
-                    console.log(e)
+                    console.error(e)
                 }
             },
         })
