@@ -11,6 +11,8 @@ type UserProps = {
   session: Session | null
 }
 
+export const runtime = 'edge';
+
 export default function Main ({ session } : UserProps){
 
   const app = useApp()
